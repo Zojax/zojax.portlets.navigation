@@ -1,0 +1,2 @@
+<script type="text/javascript" src="xmltree.js"
+        tal:attributes="src context/++resource++zojaxui-navigation-xmltree.js"></script>

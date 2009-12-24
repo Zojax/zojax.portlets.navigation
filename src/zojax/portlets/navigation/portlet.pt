@@ -1,0 +1,13 @@
+<div class="z-portlet portlet-navigation" i18n:domain="zojax.portlets.navigation">
+
+  <h2 class="z-portlet-header" i18n:translate="">Navigation</h2>
+
+  <div class="z-portlet-body">
+    <div xmlns="http://www.zope.org/zope3xmltree"
+	 id="navtreecontents"
+	 class="z-portlet-item"
+	 onclick="treeclicked(event);"
+	 i18n:translate="">Loading...</div>
+  </div>
+
+</div>

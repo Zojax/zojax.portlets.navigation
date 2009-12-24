@@ -1,0 +1,44 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:i18n="http://namespaces.zope.org/i18n"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.portlets.navigation">
+
+  <zojax:resource
+     name="zojax-portlet-navigation1.js"
+     file="xmltree.js" />
+
+  <zojax:resource
+     name="zojax-portlet-navigation2.js"
+     file="xmltree-init.js"
+     type="zrt" />
+
+  <zojax:resourceinclude
+     name="zojax.portlet.navigation1"
+     library="zojax.portlet.navigation"
+     type="javascript"
+     path="zojax-portlet-navigation1.js" compression="yes" />
+
+  <zojax:resourceinclude
+     name="zojax.portlet.navigation2"
+     library="zojax.portlet.navigation"
+     type="inplace"
+     path="zojax-portlet-navigation2.js" />
+
+  <zojax:portlet
+     name="portlet.navigation"
+     title="Simple navigation portlet"
+     template="portlet.pt"
+     class=".portlet.NavigationPortlet" />
+
+  <!-- styles -->
+  <zojax:resourceinclude
+     name="zojax-portlets-navigation.css"
+     library="zojax"
+     type="stylesheet"
+     file="styles.css" filetype="zrt" />
+
+  <!-- translations -->
+  <i18n:registerTranslations directory="locales"/>
+
+</configure>
