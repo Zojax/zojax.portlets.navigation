@@ -1,0 +1,66 @@
+==================
+Navigation portlet
+==================
+
+    >>> from zope import component, interface
+    >>> from zope.testbrowser.testing import Browser
+    >>> from zope.app.testing.functional import getRootFolder
+    >>> from zojax.extensions.interfaces import IExtensible
+
+    >>> root = getRootFolder()
+    >>> interface.alsoProvides(root, IExtensible)
+
+user
+
+    >>> user = Browser()
+    >>> user.handleErrors = False
+    >>> user.addHeader("Authorization", "Basic mgr:mgrpw")
+    >>> user.open("http://localhost/test.html")
+    >>> 'Google Ads' in user.contents
+    False
+
+change portlet settings
+
+    >>> actor = Browser()
+    >>> actor.handleErrors = False
+    >>> actor.addHeader("Authorization", "Basic mgr:mgrpw")
+    >>> actor.open("http://localhost/++extensions++/")
+    >>> actor.getLink('Portlets').click()
+
+set portlets manager
+
+    >>> actor.getLink('Left column portlets').click()
+    >>> actor.open('http://localhost/++extensions++/portlets/columns.left/?form.widgets.portletIds:list=portlet.navigation&form.buttons.save=Save')
+
+
+check portlet
+
+    >>> user = Browser()
+    >>> user.handleErrors = False
+    >>> user.addHeader("Authorization", "Basic mgr:mgrpw")
+    >>> user.open("http://localhost/test.html")
+    >>> print user.contents
+    <html>
+      <head>
+        <script type="text/javascript" src="http://localhost/.../zojax.portlet.navigation.js"></script>
+        <script type="text/javascript">
+           function onload(){
+             loadtree('http://localhost/', 'http://localhost/');
+           };
+           if (window.addEventListener)
+              window.addEventListener("load", onload, false);
+           if (window.attachEvent)
+              window.attachEvent("onload", onload)
+        </script>
+      </head>
+    ...
+    <div class="z-portlet portlet-navigation">
+      <h2 class="z-portlet-header">Navigation</h2>
+      <div class="z-portlet-body">
+         <div xmlns="http://www.zope.org/zope3xmltree"
+              id="navtreecontents" class="z-portlet-item"
+              onclick="treeclicked(event);">Loading...</div>
+      </div>
+    </div>
+    ...
+    </html>
