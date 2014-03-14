@@ -42,7 +42,7 @@ check portlet
     >>> print user.contents
     <html>
       <head>
-    <script type="text/javascript" src="http://localhost/++rspkg++4f72c702cc7185d3274e4edd1563bcf0/zojax.portlet.navigation.js"></script>
+    <script type="text/javascript" src="http://localhost/.../zojax.portlet.navigation.js"></script>
     <script type="text/javascript">
       function onload(){
         loadtree('http://localhost/', 'http://localhost/');
